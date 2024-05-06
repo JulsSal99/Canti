@@ -88,10 +88,13 @@
 
     /* Media query per dispositivi mobili */
     @media screen and (max-width: 768px) {
-        /* Rimuove lo stato attivo predefinito per tutti gli elementi */
+        /* Rimuove l'effetto di evidenziazione blu sui dispositivi mobili */
         *:focus {
             outline: none; /* Rimuove il contorno */
+            -webkit-tap-highlight-color: transparent; /* Imposta il colore dell'evidenziazione del tocco su trasparente */
+            touch-action: manipulation; /* Impedisce le azioni di evidenziazione predefinite sui dispositivi mobili */
         }
+
         a.download-link{
             font-size: 15px;
         }
