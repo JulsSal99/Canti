@@ -88,6 +88,10 @@
 
     /* Media query per dispositivi mobili */
     @media screen and (max-width: 768px) {
+        /* Rimuove lo stato attivo predefinito per tutti gli elementi */
+        *:focus {
+            outline: none; /* Rimuove il contorno */
+        }
         a.download-link{
             font-size: 15px;
         }
