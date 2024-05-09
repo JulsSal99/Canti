@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files nella Cartella</title>
+</head>
+<body>
+    <h1>Files nella Cartella</h1>
+    <p><a href="index.html">Torna all'elenco delle cartelle</a></p>
+    <ul id="elenco-files">
+        <!-- I files verranno aggiunti dinamicamente qui -->
+    </ul>
+    <script>
+        // Funzione per ottenere il parametro dalla URL
+        function ottieniParametroDaURL(nomeParametro) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nomeParametro);
+        }
+
+        // Funzione per caricare i files dalla cartella specificata
+        function caricaFiles() {
+            const cartella = ottieniParametroDaURL('cartella');
+            const listaFiles = document.getElementById("elenco-files");
+
+            // Ottieni l'elenco dei file tramite chiamata AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const elencoFiles = JSON.parse(xhr.responseText);
+                        listaFiles.innerHTML = ""; // Pulisci la lista prima di aggiungere i nuovi files
+                        elencoFiles.forEach(file => {
+                            const listItem = document.createElement("li");
+                            listItem.textContent = file;
+                            listaFiles.appendChild(listItem);
+                        });
+                    } else {
+                        console.error('Si è verificato un errore durante il recupero dei files.');
+                    }
+                }
+            };
+            xhr.open('GET', 'https://api.github.com/repos/JulsSal99/Canti/contents/' + cartella);
+            xhr.send();
+        }
+
+        // Esegui la funzione di caricamento dei files quando la pagina è pronta
+        document.addEventListener("DOMContentLoaded", caricaFiles);
+    </script>
+</body>
+</html>

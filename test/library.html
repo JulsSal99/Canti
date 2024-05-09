@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenco Cartelle</title>
+    <script>
+        function mostraFiles(cartella) {
+            window.location.href = "files.html?cartella=" + cartella;
+        }
+    </script>
+</head>
+<body>
+    <h1>Elenco Cartelle</h1>
+    <ul id="elenco-cartelle">
+        <li onclick="mostraFiles('cartella1')">Cartella 1</li>
+        <li onclick="mostraFiles('cartella2')">Cartella 2</li>
+        <!-- Aggiungi altre cartelle secondo necessità -->
+    </ul>
+</body>
+</html>
