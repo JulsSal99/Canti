@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizzazione dei nomi dei file da GitHub</title>
+</head>
+<body>
+
+  <h1>Nomi dei file che iniziano con "-"</h1>
+  <ul id="fileNamesList"></ul>
+
+  <script>
+    // Codice JavaScript per ottenere i nomi dei file da GitHub e visualizzarli
+    const folderUrl = 'https://api.github.com/repos/JulsSal99/Canti/contents/test';
+
+    // Array per memorizzare i nomi dei file
+    let fileNamesStartingWithDash = [];
+
+    // Funzione per visualizzare i nomi dei file a schermo
+    function displayFileNames() {
+      const fileNamesList = document.getElementById('fileNamesList');
+      fileNamesList.innerHTML = ''; // Pulisci la lista
+
+      fileNamesStartingWithDash.forEach(fileName => {
+        const li = document.createElement('li');
+        li.textContent = fileName;
+        fileNamesList.appendChild(li);
+      });
+    }
+
+    // Esegui la chiamata API a GitHub per ottenere i nomi dei file
+    fetch(folderUrl)
+      .then(response => response.json())
+      .then(data => {
+        fileNamesStartingWithDash = data
+          .filter(item => item.type === 'file' && item.name.startsWith('-'))
+          .map(item => item.name);
+
+        // Visualizza i nomi dei file
+        displayFileNames();
+      })
+      .catch(error => {
+        console.error('Errore durante il recupero dei file da GitHub:', error);
+      });
+  </script>
+</body>
+</html>
