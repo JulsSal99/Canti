@@ -11,6 +11,7 @@
     <ul id="elenco-files">
         <!-- I files verranno aggiunti dinamicamente qui -->
     </ul>
+
     <script>
         // Funzione per ottenere il parametro dalla URL
         function ottieniParametroDaURL(nomeParametro) {
@@ -21,27 +22,22 @@
         // Funzione per caricare i files dalla cartella specificata
         function caricaFiles() {
             const cartella = ottieniParametroDaURL('cartella');
-            const listaFiles = document.getElementById("elenco-files");
 
-            // Ottieni l'elenco dei file tramite chiamata AJAX
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        const elencoFiles = JSON.parse(xhr.responseText);
-                        listaFiles.innerHTML = ""; // Pulisci la lista prima di aggiungere i nuovi files
-                        elencoFiles.forEach(file => {
-                            const listItem = document.createElement("li");
-                            listItem.textContent = file;
-                            listaFiles.appendChild(listItem);
-                        });
-                    } else {
-                        console.error('Si è verificato un errore durante il recupero dei files.');
+            // Effettua una richiesta GET all'API di GitHub per ottenere l'elenco dei contenuti della cartella
+            fetch(`https://api.github.com/repos/JulsSal99/Canti/contents/${cartella}`)
+            .then(response => response.json())
+            .then(data => {
+                const listaFiles = document.getElementById("elenco-files");
+                listaFiles.innerHTML = ""; // Pulisci la lista prima di aggiungere i nuovi files
+                data.forEach(item => {
+                    if (item.type === "file") {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = item.name;
+                        listaFiles.appendChild(listItem);
                     }
-                }
-            };
-            xhr.open('GET', 'https://api.github.com/repos/JulsSal99/Canti/contents/' + cartella);
-            xhr.send();
+                });
+            })
+            .catch(error => console.error('Errore durante il recupero dei files:', error));
         }
 
         // Esegui la funzione di caricamento dei files quando la pagina è pronta
