@@ -18,7 +18,7 @@
             const foldersDiv = document.getElementById('folders');
             data.folders.forEach(folder => {
                 const folderElement = document.createElement('div');
-                folderElement.textContent = folder.name;
+                folderElement.textContent = folder;
                 folderElement.addEventListener('click', function() {
                 window.location.href = folder + '/library.html';
                 });
