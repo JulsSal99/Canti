@@ -18,9 +18,9 @@
             const foldersDiv = document.getElementById('folders');
             data.folders.forEach(folder => {
                 const folderElement = document.createElement('div');
-                folderElement.textContent = folder;
+                folderElement.textContent = folder.name; // Utilizza folder.name invece di folder
                 folderElement.addEventListener('click', function() {
-                window.location.href = folder + '/library.html';
+                window.location.href = folder.name + '/library.html'; // Utilizza folder.name invece di folder
                 });
                 foldersDiv.appendChild(folderElement);
             });
