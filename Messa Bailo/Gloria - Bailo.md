@@ -14,8 +14,8 @@ Tommaso Bailo, Renato Giorgi
 
 **Re La Sol Re &ensp;Mi- &emsp; Do &emsp; &emsp; La4 La**\
 Gloria, Gloria a Dio nell'alto dei cie - - li.\
-**Re &ensp; &ensp; &emsp; Fa#- &emsp; &ensp;Sol Si7 Mi- &emsp; &emsp; La La7 Sol Re** \
-E pace in terra agli uomini &ensp;di buona vo-lon-&ensp;tà.\
+**Re &ensp; &ensp; &emsp; Fa#- &emsp; &ensp;Sol Si7 Mi- &emsp; &emsp; La (La7) Sol Re** \
+E pace in terra agli uomini &ensp;di buona vo - lon-&ensp;tà.\
 
 <br>
 
@@ -37,8 +37,11 @@ tu che siedi alla destra del Padre, abbi pietà di noi.\
 
 **Ritornello x1**
 
-Perchè tu solo il Santo, tu solo il Signore,
-tu solo l'Altissimo, Ge - - - - sù         Cristo,
-con lo spirito Santo nella glo - ria di Dio Padre.
+**&emsp;&ensp; Si- &emsp; Fa#- &ensp;Si- &emsp; &emsp; Sol &emsp;&emsp;La4  La**\
+Perchè tu solo il Santo, tu solo il Signo-re,
+**Re &ensp;Sol7+ &ensp;La&ensp;Re&ensp;Sol &ensp;Si-/Sol# La&ensp;Fa#/La#** \
+tu solo l'Al - tissimo, Ge - sù &emsp;&ensp;&emsp; Cri-sto,
+**Si- &ensp;&ensp; Sol7+ La&ensp; Re4&ensp;Si-&emsp;Sol (Si-/Fa#) Mi- &emsp;  La4 La**\
+con lo spirito Santo &emsp; nella glo - ria &emsp; &emsp; di Dio Pa - dre.
 **Si- Fa#-/La Sol Re/Fa# Mi- Sol/La Re**\
 A - men. &emsp;&ensp; A - men. &emsp; A - - - - - - men.
