@@ -1,7 +1,3 @@
 {
-    "folders": [
-      { "Messa di Bailo": "Messa Bailo" },
-      { "1": "Messa 1" }
-    ]
-  }
-  
+    "folders": ["Messa Bailo", "Messa 1"]
+}

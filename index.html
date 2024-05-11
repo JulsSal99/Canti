@@ -4,63 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elenco Cartelle</title>
-    <style>
-        /* Stili CSS per la formattazione */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .folder-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .folder-list li {
-            margin-bottom: 10px;
-        }
-        .folder-list li a {
-            text-decoration: none;
-            color: blue;
-            cursor: pointer;
-        }
-        .folder-list li a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
     <h1>Elenco Cartelle</h1>
-    <ul class="folder-list" id="folderList">
-        <!-- Qui verranno inserite dinamicamente le cartelle -->
-    </ul>
+    <div id="folders"></div>
 
     <script>
-        // URL del file JSON che elenca le cartelle
-        const jsonFileUrl = 'folders.json';
-
-        // Funzione per caricare l'elenco delle cartelle dal file JSON
-        function loadFolders() {
-            fetch(jsonFileUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const folderList = document.getElementById('folderList');
-
-                    // Per ogni cartella nel file JSON, crea un elemento della lista
-                    data.folders.forEach(folder => {
-                        const listItem = document.createElement('li');
-                        const link = document.createElement('a');
-                        link.textContent = folder.name;
-                        // Aggiungi l'attributo href al link
-                        link.href = `./${folder.name}/library.html`;
-                        listItem.appendChild(link);
-                        folderList.appendChild(listItem);
-                    });
-                })
-                .catch(error => {
-                    console.error('Si è verificato un errore:', error);
+        document.addEventListener("DOMContentLoaded", function() {
+        fetch('folders.json')
+            .then(response => response.json())
+            .then(data => {
+            console.log('Contenuto del file JSON:', data);
+            const foldersDiv = document.getElementById('folders');
+            data.folders.forEach(folder => {
+                const folderElement = document.createElement('div');
+                folderElement.textContent = folder;
+                folderElement.addEventListener('click', function() {
+                window.location.href = folder + '/library.html';
                 });
-        }
+                foldersDiv.appendChild(folderElement);
+            });
+            })
+            .catch(error => console.error('Errore nel caricamento dei dati:', error));
+        });
 
-        // Chiama la funzione loadFolders() per caricare l'elenco delle cartelle all'avvio
-        loadFolders();
+
     </script>
 </body>
 </html>
