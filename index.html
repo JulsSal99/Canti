@@ -5,11 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Folder Viewer</title>
     <style>
+        /* Stile della barra del titolo */
+        .title-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px; /* Altezza desiderata della barra del titolo */
+            background-color: rgba(200, 200, 200, 0.412); /* Sfondo grigio blurrato semi trasparente */
+            backdrop-filter: blur(10px); /* Effetto blur */
+            z-index: 1000; /* Assicura che la barra del titolo sia sopra gli altri elementi */
+            display: flex;
+            align-items: center; /* Centra verticalmente il contenuto */
+            padding-left: 20px; /* Aggiunge spazio a sinistra per il testo */
+            box-sizing: border-box; /* Considera il padding nel calcolo della larghezza */
+            font-size: 30px;
+        }
         /* Stili generici */
         body::after {
             content: "";
             background-image: url("bkg.jpeg");
             opacity: 0.3;
+            top: 60px; /* Altezza della barra del titolo */
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        #folders {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+            padding-top: 80px; /* Altezza della barra del titolo più un margine superiore per il contenuto */
+        }
+
+        body::after {
+            content: "";
+            background-image: url("bkg.jpeg");
+            opacity: 0.5;
             top: 0;
             left: 0;
             bottom: 0;
@@ -41,10 +78,11 @@
             align-items: center;
             justify-content: flex-end;
             overflow: hidden;
+            font-size: large;
         }
         button.folder span {
             display: block;
-            margin-top: 10px;
+            margin-top: 5px;
         }
         /* Stile quando il pulsante viene premuto */
         button.folder:active {
@@ -67,11 +105,13 @@
             left: 0;
             right: 0;
             margin: auto;
-            z-index: -1;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
+    <div class="title-bar">Libreria</div>
+    <!-- PER DEBUG: <div id="folders"><button class="folder">Messa Bailo</button><button class="folder">Messa 1</button></div> -->
     <div id="folders"></div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
