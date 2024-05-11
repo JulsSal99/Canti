@@ -205,6 +205,7 @@
             overlayImg.style.width = "100%";
             overlayImg.style.height = "auto";
             overlayImg.style.top = "10%";
+            overlayImg.style.maxHeight = ""; // Disattiva il max-height
         } else {
             isZoomed = false;
             overlayImg.style.cursor = "default";
@@ -214,8 +215,10 @@
             overlayImg.style.width = "";
             overlayImg.style.height = "";
             resetImagePosition();
+            overlayImg.style.maxHeight = "90%"; // Riattiva il max-height
         }
     }
+
 
 
     function startDragging(event) {
