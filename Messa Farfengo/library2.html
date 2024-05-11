@@ -191,7 +191,7 @@
     let imageDragging = false;
     let initialX;
     let initialY;
-    
+
     function toggleZoom() {
         const overlayImg = document.getElementById("overlayImg");
         const zoomButton = document.querySelector(".zoom-button");
@@ -202,15 +202,21 @@
             zoomButton.textContent = "Normale";
             overlayImg.addEventListener("mousedown", startDragging);
             overlayImg.addEventListener("mouseup", stopDragging);
+            overlayImg.style.width = "100%";
+            overlayImg.style.height = "auto";
+            overlayImg.style.top = "10%";
         } else {
             isZoomed = false;
             overlayImg.style.cursor = "default";
             zoomButton.textContent = "Lente";
             overlayImg.removeEventListener("mousedown", startDragging);
             overlayImg.removeEventListener("mouseup", stopDragging);
+            overlayImg.style.width = "";
+            overlayImg.style.height = "";
             resetImagePosition();
         }
     }
+
 
     function startDragging(event) {
         imageDragging = true;
