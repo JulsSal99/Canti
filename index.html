@@ -168,7 +168,7 @@
     const thumbnailsPath = "thumbnails/";
 
 
-    const imageGroups = {};
+    let imageGroups;
     fetch('imageGroups.json')
         .then(response => response.json())
         .then(data => {
