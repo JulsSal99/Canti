@@ -103,6 +103,24 @@
     .pagenum {
         max-width: 75%;
     }
+    .overlay img {
+    /* Resto dello stile dell'immagine nell'overlay */
+    cursor: default; /* Imposta il cursore di default */
+    }
+
+    .zoom-button {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 18px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        z-index: 999;
+    }
+
 
     /* Media query per dispositivi mobili */
     @media screen and (max-width: 768px) {
@@ -150,19 +168,6 @@
             padding-bottom: 50%;
         }
     }
-
-    .zoom-button {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        cursor: pointer;
-        color: #fff;
-        font-size: 18px;
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
-        z-index: 999;
-    }
 </style>
 </head>
 <body>
@@ -175,10 +180,47 @@
             <span class="arrow" onclick="navigateImages(-1)">&#10094;</span>
             <span class="arrow" onclick="navigateImages(1)">&#10095;</span>
         </div>
-        <div class="zoom-button" onclick="toggleZoom()">Lente</div>
+        <div class="zoom-button" onclick="toggleZoom()">
+            Lente
+        </div>
         <img id="overlayImg">
     </div>
+    
 <script>
+    let isZoomed = false;
+
+    function toggleZoom() {
+        const overlayImg = document.getElementById("overlayImg");
+        const zoomButton = document.querySelector(".zoom-button");
+        if (!isZoomed) {
+            isZoomed = true;
+            overlayImg.style.cursor = "move"; // Cambia il cursore in "move" per indicare che l'immagine è trascinabile
+            zoomButton.textContent = "Normale"; // Cambia il testo del pulsante
+        } else {
+            isZoomed = false;
+            overlayImg.style.cursor = "default"; // Reimposta il cursore di default
+            zoomButton.textContent = "Lente"; // Reimposta il testo del pulsante
+            resetImagePosition(); // Reimposta la posizione dell'immagine
+        }
+    }
+    function handleMouseMove(event) {
+        if (isZoomed) {
+            const overlayImg = document.getElementById("overlayImg");
+            const offsetX = event.clientX - overlayImg.offsetLeft;
+            const offsetY = event.clientY - overlayImg.offsetTop;
+            const imageX = offsetX / overlayImg.offsetWidth * (overlayImg.naturalWidth - overlayImg.offsetWidth);
+            const imageY = offsetY / overlayImg.offsetHeight * (overlayImg.naturalHeight - overlayImg.offsetHeight);
+            overlayImg.style.left = -imageX + "px";
+            overlayImg.style.top = -imageY + "px";
+        }
+    }
+    function resetImagePosition() {
+        const overlayImg = document.getElementById("overlayImg");
+        overlayImg.style.left = "50%";
+        overlayImg.style.top = "50%";
+    }
+    document.getElementById("overlayImg").addEventListener("mousemove", handleMouseMove); // Aggiungi l'evento mousemove all'immagine quando il pulsante lente è attivo
+
     const thumbnailsPath = "thumbnails/";
 
     /*gestisce l'ordine di esecuzione di ogni funzione*/
@@ -204,4 +246,142 @@
             groupDiv.classList.add("image-group");
 
             const heading = document.createElement("h2");
-            heading.textContent
+            heading.textContent = groupName;
+            groupDiv.appendChild(heading);
+
+            images.forEach((image, index) => {
+                const img = document.createElement("img");
+                img.src = thumbnailsPath + image;
+                img.onclick = () => openOverlay(images, index, groupName);
+                groupDiv.appendChild(img);
+            });
+
+            container.appendChild(groupDiv);
+        }
+    }
+
+    function handleIMGsize() { // Accetta overlayImg come parametro
+        const overlayImg = document.getElementById("overlayImg");
+        const windowHeight = window.innerHeight; // Calcola l'altezza della finestra
+        const elementHeight = overlayImg.offsetHeight; // Calcola l'altezza dell'elemento
+        if (elementHeight > windowHeight * 0.8) { // Se l'altezza dell'elemento supera l'80% dell'altezza della finestra
+            overlayImg.style.top = '55%'; // Imposta la posizione dell'elemento al 55% dell'altezza della finestra
+            overlayImg.style.height = windowHeight; // Imposta l'altezza dell'elemento al 90% dell'altezza della finestra
+        } else {
+            overlayImg.style.top = '50%';
+            overlayImg.style.height = '';
+        }
+    }
+
+
+    function openOverlay(images, index, groupName) {
+        abilitaNavigazioneFrecce();
+        const overlay = document.getElementById("overlay");
+        const overlayImg = document.getElementById("overlayImg");
+        const spanElement = document.querySelector("span.pagenum");
+        spanElement.textContent = "[" + imageGroups[groupName].length + "] " + groupName;
+        overlay.style.display = "block";
+        overlayImg.src = thumbnailsPath + images[index];
+        overlayImg.dataset.group = JSON.stringify(images);
+        overlayImg.dataset.index = index;
+        groupTitle.textContent = groupName;
+        document.getElementById("imageContainer").appendChild(groupTitle);
+        document.getElementById("imageContainer").appendChild(document.createElement("br")); // Aggiungiamo una riga vuota per lo spazio
+        handleIMGsize();
+    }
+
+
+    function closeOverlay() {
+        document.getElementById("overlay").style.display = "none";
+        const pageTitle = document.querySelector("#imageContainer h3");
+        const groupTitle = document.querySelector("#imageContainer h3 + h3");
+        if (pageTitle) pageTitle.remove();
+        if (groupTitle) groupTitle.remove();
+        const firstGroupName = Object.keys(imageGroups)[0];
+        document.querySelector(".image-group h2").textContent = firstGroupName;
+        disabilitaNavigazioneFrecce()
+    }
+
+    function navigateImages(direction) {
+        const overlayImg = document.getElementById("overlayImg");
+        const currentIndex = parseInt(overlayImg.dataset.index);
+        const currentGroupImages = JSON.parse(overlayImg.dataset.group);
+
+        let newIndex;
+
+        if (direction === 1) {
+            newIndex = currentIndex + 1;
+            if (newIndex >= currentGroupImages.length) {
+                const groupNames = Object.keys(imageGroups);
+                const currentGroupName = document.querySelector(".image-group h2").textContent;
+                const currentGroupIndex = groupNames.indexOf(currentGroupName);
+                const nextGroupIndex = (currentGroupIndex + 1) % groupNames.length;
+                const nextGroupName = groupNames[nextGroupIndex];
+                const nextGroupImages = imageGroups[nextGroupName];
+                overlayImg.src = thumbnailsPath + nextGroupImages[0];
+                overlayImg.dataset.group = JSON.stringify(nextGroupImages);
+                overlayImg.dataset.index = 0;
+                document.querySelector(".image-group h2").textContent = nextGroupName;
+                const spanElement = document.querySelector("span.pagenum");
+                spanElement.textContent = "[" + nextGroupImages.length + "] " + nextGroupName;
+            } else {
+                overlayImg.src = thumbnailsPath + currentGroupImages[newIndex];
+                overlayImg.dataset.index = newIndex;
+                const spanElement = document.querySelector("span.pagenum");
+                spanElement.textContent = "[" + nextGroupImages.length + "] " + nextGroupName;
+            }
+        } else if (direction === -1) {
+            newIndex = currentIndex - 1;
+            if (newIndex < 0) {
+                const groupNames = Object.keys(imageGroups);
+                const currentGroupName = document.querySelector(".image-group h2").textContent;
+                const currentGroupIndex = groupNames.indexOf(currentGroupName);
+                const prevGroupIndex = (currentGroupIndex - 1 + groupNames.length) % groupNames.length;
+                const prevGroupName = groupNames[prevGroupIndex];
+                const prevGroupImages = imageGroups[prevGroupName];
+                overlayImg.src = thumbnailsPath + prevGroupImages[prevGroupImages.length - 1];
+                overlayImg.dataset.group = JSON.stringify(prevGroupImages);
+                overlayImg.dataset.index = prevGroupImages.length - 1;
+                document.querySelector(".image-group h2").textContent = prevGroupName;
+                const spanElement = document.querySelector("span.pagenum");
+                spanElement.textContent = "[" + prevGroupImages.length + "] " + prevGroupName;
+            } else {
+                overlayImg.src = thumbnailsPath + currentGroupImages[newIndex];
+                overlayImg.dataset.index = newIndex;
+                const spanElement = document.querySelector("span.pagenum");
+                spanElement.textContent = "[" + nextGroupImages.length + "] " + nextGroupName;
+            }
+        }
+        handleIMGsize();
+    }
+
+    let eventListenerAdded = false;
+
+    function abilitaNavigazioneFrecce() {
+        // Verifica se l'ascoltatore degli eventi è già stato aggiunto per evitare di aggiungerlo più volte
+        if (!eventListenerAdded) {
+            // Aggiungi un listener per l'evento keydown sulla finestra
+            window.addEventListener('keydown', gestisciPressioneTasto);
+            eventListenerAdded = true;
+        }
+    }
+
+    function disabilitaNavigazioneFrecce() {
+        // Rimuovi l'ascoltatore degli eventi keydown dalla finestra
+        window.removeEventListener('keydown', gestisciPressioneTasto);
+        eventListenerAdded = false;
+    }
+
+    function gestisciPressioneTasto(event) {
+        // Controlla se è stato premuto il tasto freccia sinistra
+        if (event.key === "ArrowLeft") {
+            navigateImages(-1); // Naviga all'immagine precedente
+        }
+        // Controlla se è stato premuto il tasto freccia destra
+        else if (event.key === "ArrowRight") {
+            navigateImages(1); // Naviga all'immagine successiva
+        }
+    }
+</script>
+</body>
+</html>
