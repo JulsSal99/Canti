@@ -3,30 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elenco Cartelle</title>
+    <title>Folder Viewer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Elenco Cartelle</h1>
     <div id="folders"></div>
-
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        fetch('folders.json')
+        fetch("folders.json")
             .then(response => response.json())
             .then(data => {
-            console.log('Contenuto del file JSON:', data);
-            const foldersDiv = document.getElementById('folders');
-            data.folders.forEach(folder => {
-                const folderElement = document.createElement('div');
-                folderElement.textContent = folder;
-                folderElement.addEventListener('click', function() {
-                window.location.href = folder + '/library.html';
+                const foldersDiv = document.getElementById("folders");
+                data.folders.forEach(folder => {
+                    const folderButton = document.createElement("button");
+                    folderButton.textContent = folder;
+                    folderButton.addEventListener("click", function() {
+                        window.location.href = folder + "/library.html";
+                    });
+                    foldersDiv.appendChild(folderButton);
                 });
-                foldersDiv.appendChild(folderElement);
-            });
             })
-            .catch(error => console.error('Errore nel caricamento dei dati:', error));
-        });
+            .catch(error => console.error("Errore nel caricamento dei dati:", error));
+    });
 
     </script>
 </body>
