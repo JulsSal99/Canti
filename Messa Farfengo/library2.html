@@ -120,6 +120,10 @@
         border-radius: 5px;
         z-index: 999;
     }
+    .overlay img.zoomed {
+        overflow-y: auto;
+    }
+
 
 
     /* Media query per dispositivi mobili */
@@ -198,13 +202,14 @@
 
         if (!isZoomed) {
             isZoomed = true;
-            overlayImg.style.cursor = "default"; // Rimuove il cursore "move"
+            overlayImg.style.cursor = "default";
             zoomButton.textContent = "Normale";
             overlayImg.style.width = "100%";
             overlayImg.style.height = "auto";
             overlayImg.style.top = "10%";
-            overlayImg.style.maxHeight = ""; // Disattiva il max-height
-            overlayImg.style.overflowY = "scroll"; // Rendi l'immagine scrollabile verticalmente
+            overlayImg.style.maxHeight = ""; // Disattiva max-height
+            overlayImg.classList.add("zoomed"); // Aggiungi la classe per abilitare lo zoom
+            document.body.style.overflow = "hidden"; // Nascondi lo scrolling del body
         } else {
             isZoomed = false;
             overlayImg.style.cursor = "default";
@@ -212,8 +217,9 @@
             overlayImg.style.width = "";
             overlayImg.style.height = "";
             resetImagePosition();
-            overlayImg.style.maxHeight = "90%"; // Riattiva il max-height
-            overlayImg.style.overflowY = ""; // Disabilita lo scrolling verticale
+            overlayImg.style.maxHeight = "90%"; // Riattiva max-height
+            overlayImg.classList.remove("zoomed"); // Rimuovi la classe per disabilitare lo zoom
+            document.body.style.overflow = ""; // Ripristina lo scrolling del body
         }
     }
 
