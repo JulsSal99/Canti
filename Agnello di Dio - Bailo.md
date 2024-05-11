@@ -10,7 +10,7 @@ Tommaso Bailo, Renato Giorgi
 
 <img title="title" alt="Alt text" src="./Agnello-di-Dio-Bailo-intro.jpg" width="90%"/>
 
-Sol# Do- Re# Mib Do
+**&emsp;&emsp;Sol# Do- Do# Re# Do**
 
 **&ensp;Sol# Sol#/Do Re#/Do# Do#**
 Agne - llo &emsp; di Di - - - - - o,

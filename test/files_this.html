@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizzazione dei nomi dei file da GitHub</title>
+  <title>Nomi dei file</title>
 </head>
 <body>
 
@@ -11,39 +11,32 @@
   <ul id="fileNamesList"></ul>
 
   <script>
-    // Codice JavaScript per ottenere i nomi dei file da GitHub e visualizzarli
-    const folderUrl = 'https://api.github.com/repos/JulsSal99/Canti/contents/test';
+    // Lista di nomi di file di esempio
+    const fileNames = ['1 - a.txt', '1 - b.txt', '2 - c.txt'];
 
-    // Array per memorizzare i nomi dei file
-    let fileNamesStartingWithDash = [];
+    // Funzione per ottenere i nomi dei file
+    function getFileNames() {
+      // Filtra i nomi dei file che iniziano con "-"
+      const filteredFileNames = fileNames.filter(fileName => fileName.startsWith('-'));
+
+      // Visualizza i nomi dei file
+      displayFileNames(filteredFileNames);
+    }
 
     // Funzione per visualizzare i nomi dei file a schermo
-    function displayFileNames() {
+    function displayFileNames(fileNames) {
       const fileNamesList = document.getElementById('fileNamesList');
       fileNamesList.innerHTML = ''; // Pulisci la lista
 
-      fileNamesStartingWithDash.forEach(fileName => {
+      fileNames.forEach(fileName => {
         const li = document.createElement('li');
-        // Decodifica l'encoding URL per visualizzare correttamente il carattere "-"
-        li.textContent = decodeURIComponent(fileName);
+        li.textContent = fileName;
         fileNamesList.appendChild(li);
       });
     }
 
-    // Esegui la chiamata API a GitHub per ottenere i nomi dei file
-    fetch(folderUrl)
-      .then(response => response.json())
-      .then(data => {
-        fileNamesStartingWithDash = data
-          .filter(item => item.type === 'file' && item.name.startsWith('1%20-'))
-          .map(item => item.name);
-
-        // Visualizza i nomi dei file
-        displayFileNames();
-      })
-      .catch(error => {
-        console.error('Errore durante il recupero dei file da GitHub:', error);
-      });
+    // Richiedi i nomi dei file quando la pagina si carica
+    window.onload = getFileNames;
   </script>
 </body>
 </html>

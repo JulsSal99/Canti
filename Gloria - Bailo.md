@@ -23,10 +23,10 @@ E pace in terra agli uomini &ensp;di buona vo-lon-&ensp;tà.\
 Noi ti lodiamo, ti benediciamo, ti adoriamo,\
 **Re &emsp;&ensp; Sol7+ &ensp;La &emsp;&emsp; &emsp; (Re4) Re    Sol &emsp; &emsp; Si-/Sol# La &ensp;Fa#/La#** \
 ti glorifichiamo, ti rendiamo grazie &emsp;per la tua gloria immensa,\
-**Si- &emsp;&ensp; Sol7+ La &emsp;(Re4) Re Sol Re/Fa# Mi- &emsp; &emsp;&emsp;&emsp; La Fa#/La#**\
-Signore Dio, &ensp;re del cielo, &emsp;&ensp;Di - o &emsp;&ensp;&emsp; Padre onnipoten-te.\
-**Si- &emsp;&emsp; Mi- &emsp; &emsp; Fa#- &ensp; Si- &emsp; Sol Mi-7 La**\
-Signore, Figlio unigenito, Gesù Cri - - - -  sto.\
+**Si- &emsp;&ensp; Sol7+ La &emsp;Re4 Re &ensp;Sol (Re/Fa#) Mi- &emsp; &emsp;&emsp;&emsp; La Fa#/La#**\
+Signore Dio, &ensp;re del cielo, &emsp;&ensp;Di - o &emsp;&ensp; &emsp; Padre onnipoten-te.\
+**Si- &emsp;&emsp; Mi- &emsp; &emsp; Fa#- &emsp;(Si-)&ensp; Sol Mi-7 La**\
+Signore, Figlio unigenito,&ensp;Gesù Cri - - - -  sto.\
 
 **Ritornello x1**
 

@@ -50,6 +50,7 @@
         margin: auto;
         max-width: 90%;
         max-height: 90%;
+        overflow-y: auto; /* Abilita lo scrolling verticale se l'immagine è più alta dell'area designata */
         position: absolute;
         top: 50%;
         left: 50%;
@@ -100,7 +101,7 @@
         text-decoration: underline; /* Sottolineatura al passaggio del mouse */
     }
     .pagenum {
-        max-width: 65%;
+        max-width: 75%;
     }
 
     /* Media query per dispositivi mobili */
@@ -116,6 +117,7 @@
             width: 100%;
             max-width:100%;
             min-width:100%;
+            pointer-events: none;  /* Consente ai clic di passare attraverso l'elemento */
         }
         a.download-link{
             font-size: 15px;
@@ -127,9 +129,16 @@
             width: 120px;
         }
         .overlay .pagenum{
-            top: 40px;
-            font-size: 25px;
+            top: 30px;
+            font-size: 30px;
             padding: 10px;
+            overflow-x: auto;
+            max-width: none;
+        }
+        .overlay .close{
+            font-size: 45px;
+            padding: 20px;
+            top: 15px;
         }
         .overlay .navigation {
             top:25%;
@@ -139,13 +148,6 @@
             font-size: 10px;
             padding-top: 50%;
             padding-bottom: 50%;
-        }
-        .overlay img{
-            pointer-events: none;  /* Consente ai clic di passare attraverso l'elemento */
-        }
-        .close{
-            font-size: 40px;
-            padding: 40px;
         }
     }
 </style>
@@ -166,13 +168,16 @@
     const thumbnailsPath = "thumbnails/";
 
 
-    const imageGroups = {
-        "Kyrie eleison - Bailo": ["Kyrie-eleison-Bailo.png"],
-        "Gloria - Bailo": ["Gloria-Bailo.png"],
-        "Santo - Bailo": ["Santo-Bailo-1.png", "Santo-Bailo-2.png"],
-        "Agnello di Dio - Bailo": ["Agnello-di-Dio-Bailo.png"],
-        // Aggiungi altri gruppi e immagini se necessario
-    };
+    let imageGroups;
+    fetch('imageGroups.json')
+        .then(response => response.json())
+        .then(data => {
+            imageGroups = data;
+            console.log(imageGroups);
+        })
+        .catch(error => {
+            console.error('Si è verificato un errore:', error);
+        });
 
 
     function createImageGroups() {
@@ -198,13 +203,26 @@
         }
     }
 
+    function handleIMGsize() { // Accetta overlayImg come parametro
+        const overlayImg = document.getElementById("overlayImg");
+        const windowHeight = window.innerHeight; // Calcola l'altezza della finestra
+        const elementHeight = overlayImg.offsetHeight; // Calcola l'altezza dell'elemento
+        if (elementHeight > windowHeight * 0.8) { // Se l'altezza dell'elemento supera l'80% dell'altezza della finestra
+            overlayImg.style.top = '55%'; // Imposta la posizione dell'elemento al 55% dell'altezza della finestra
+            overlayImg.style.height = windowHeight; // Imposta l'altezza dell'elemento al 90% dell'altezza della finestra
+        } else {
+            overlayImg.style.top = '50%';
+            overlayImg.style.height = '';
+        }
+    }
+
+
     function openOverlay(images, index, groupName) {
         abilitaNavigazioneFrecce();
         const overlay = document.getElementById("overlay");
         const overlayImg = document.getElementById("overlayImg");
         const spanElement = document.querySelector("span.pagenum");
         spanElement.textContent = "[" + imageGroups[groupName].length + "] " + groupName;
-
         overlay.style.display = "block";
         overlayImg.src = thumbnailsPath + images[index];
         overlayImg.dataset.group = JSON.stringify(images);
@@ -212,6 +230,7 @@
         groupTitle.textContent = groupName;
         document.getElementById("imageContainer").appendChild(groupTitle);
         document.getElementById("imageContainer").appendChild(document.createElement("br")); // Aggiungiamo una riga vuota per lo spazio
+        handleIMGsize();
     }
 
 
@@ -276,6 +295,7 @@
                 spanElement.textContent = "[" + nextGroupImages.length + "] " + nextGroupName;
             }
         }
+        handleIMGsize();
     }
 
     let eventListenerAdded = false;
