@@ -20,27 +20,51 @@
             background-attachment: fixed;
             background-size: cover;
         }
+        /* Stile generale dei bottoni */
         button.folder {
-            background-color: #f0f0f0;
-            border: 2px solid #cccccc;
-            border-radius: 10px;
+            background-color: transparent;
+            border: none;
             cursor: pointer;
             margin: 10px;
-            padding: 20px;
+            padding: 0;
             width: 200px; /* Dimensioni dei bottoni */
-            height: 150px; /* Altezza dei bottoni */
+            height: 200px; /* Altezza dei bottoni */
             text-align: center;
-            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        /* Stile del testo */
+        button.folder span {
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Imposta l'immagine come sfondo */
+        button.folder::before {
+            content: "";
+            background-image: url('folder-icon.png'); /* Sostituisci con il percorso dell'immagine della cartella */
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
 
         /* Stile quando il pulsante viene premuto */
         button.folder:active {
-            background-color: #e0e0e0;
+            background-color: #e0e0e0; /* Cambia colore come preferisci */
         }
 
         /* Stile quando il pulsante viene premuto due volte */
         button.folder.active {
-            background-color: #c5cae9;
+            background-color: #c5cae9; /* Cambia colore come preferisci */
         }
 
         /* Imposta i bottoni in una griglia */
@@ -54,8 +78,7 @@
         @media screen and (max-width: 600px) {
             button.folder {
                 width: 150px;
-                height: 120px;
-                padding: 15px;
+                height: 150px;
             }
         }
 
@@ -63,16 +86,25 @@
         @media screen and (max-width: 400px) {
             button.folder {
                 width: 120px;
-                height: 100px;
-                padding: 10px;
+                height: 120px;
             }
         }
+
 
     </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="folders"></div>
+    <div id="folders">
+        <!-- Esempio di bottoni con immagine di cartella e testo sotto -->
+        <button class="folder">
+            <span>Folder 1</span>
+        </button>
+        <button class="folder">
+            <span>Folder 2</span>
+        </button>
+        <!-- Aggiungi altri bottoni qui -->
+    </div>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
