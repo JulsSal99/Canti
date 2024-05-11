@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Folder Viewer</title>
     <style>
-        /* Stile generale dei bottoni */
+        /* Stili generici */
         body::after {
             content: "";
             background-image: url("bkg.jpeg");
@@ -20,15 +20,21 @@
             background-attachment: fixed;
             background-size: cover;
         }
-        /* Stile generale dei bottoni */
+        #folders {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+        /* Aggiunti stili per i pulsanti */
         button.folder {
+            position: relative;
             background-color: transparent;
             border: none;
             cursor: pointer;
             margin: 10px;
             padding: 0;
-            width: 200px; /* Dimensioni dei bottoni */
-            height: 200px; /* Altezza dei bottoni */
+            width: 200px;
+            height: 200px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -36,94 +42,41 @@
             justify-content: flex-end;
             overflow: hidden;
         }
-
-        /* Stile del testo */
         button.folder span {
             display: block;
             margin-top: 10px;
         }
-
-        /* Imposta l'immagine come sfondo */
-        button.folder::before {
-            content: "";
-            background-image: url('folder-icon.png'); /* Sostituisci con il percorso dell'immagine della cartella */
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
         /* Stile quando il pulsante viene premuto */
         button.folder:active {
-            background-color: #e0e0e0; /* Cambia colore come preferisci */
+            background-color: #e0e0e0;
         }
-
         /* Stile quando il pulsante viene premuto due volte */
         button.folder.active {
-            background-color: #c5cae9; /* Cambia colore come preferisci */
+            background-color: #c5cae9;
         }
-
-        /* Imposta i bottoni in una griglia */
-        #folders {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 20px;
-        }
-
-        /* Regola la griglia per i dispositivi con larghezza dello schermo inferiore a 600px */
-        @media screen and (max-width: 600px) {
-            button.folder {
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        /* Regola la griglia per i dispositivi con larghezza dello schermo inferiore a 400px */
-        @media screen and (max-width: 400px) {
-            button.folder {
-                width: 120px;
-                height: 120px;
-            }
-        }
-
-
     </style>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="folders">
-        <!-- Esempio di bottoni con immagine di cartella e testo sotto -->
-        <button class="folder">
-            <span>Folder 1</span>
-        </button>
-        <button class="folder">
-            <span>Folder 2</span>
-        </button>
-        <!-- Aggiungi altri bottoni qui -->
-    </div>
-    
+    <div id="folders"></div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        fetch("folders.json")
-            .then(response => response.json())
-            .then(data => {
-                const foldersDiv = document.getElementById("folders");
-                data.folders.forEach(folder => {
-                    const folderButton = document.createElement("button");
-                    folderButton.textContent = folder;
-                    folderButton.addEventListener("click", function() {
-                        window.location.href = folder + "/library.html";
+            fetch("folders.json")
+                .then(response => response.json())
+                .then(data => {
+                    const foldersDiv = document.getElementById("folders");
+                    data.folders.forEach(folder => {
+                        const folderButton = document.createElement("button");
+                        folderButton.classList.add("folder");
+                        folderButton.textContent = folder;
+                        folderButton.style.backgroundImage = "url('folder-icon.png')";
+                        folderButton.addEventListener("click", function() {
+                            window.location.href = folder + "/library.html";
+                        });
+                        foldersDiv.appendChild(folderButton);
                     });
-                    foldersDiv.appendChild(folderButton);
-                });
-            })
-            .catch(error => console.error("Errore nel caricamento dei dati:", error));
-    });
-
+                })
+                .catch(error => console.error("Errore nel caricamento dei dati:", error));
+        });
     </script>
 </body>
 </html>
