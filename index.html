@@ -18,16 +18,15 @@
             const foldersDiv = document.getElementById('folders');
             data.folders.forEach(folder => {
                 const folderElement = document.createElement('div');
-                folderElement.textContent = folder.name; // Utilizza folder.name invece di folder
+                folderElement.textContent = folder.name;
                 folderElement.addEventListener('click', function() {
-                window.location.href = folder.name + '/library.html'; // Utilizza folder.name invece di folder
+                window.location.href = folder + '/library.html';
                 });
                 foldersDiv.appendChild(folderElement);
             });
             })
             .catch(error => console.error('Errore nel caricamento dei dati:', error));
         });
-
 
     </script>
 </body>
