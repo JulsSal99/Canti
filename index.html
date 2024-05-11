@@ -54,6 +54,21 @@
         button.folder.active {
             background-color: #c5cae9;
         }
+        /* Stili per l'icona della cartella */
+        button.folder::before {
+            content: "";
+            background-image: url('folder-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 80%;
+            height: 70%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +83,6 @@
                         const folderButton = document.createElement("button");
                         folderButton.classList.add("folder");
                         folderButton.textContent = folder;
-                        folderButton.style.backgroundImage = "url('folder-icon.png')";
                         folderButton.addEventListener("click", function() {
                             window.location.href = folder + "/library.html";
                         });
