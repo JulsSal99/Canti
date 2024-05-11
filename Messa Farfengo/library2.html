@@ -210,6 +210,11 @@
             overlayImg.style.maxHeight = ""; // Disattiva max-height
             overlayImg.classList.add("zoomed"); // Aggiungi la classe per abilitare lo zoom
             document.body.style.overflow = "hidden"; // Nascondi lo scrolling del body
+
+            var elements = document.querySelectorAll('.overlay img');
+            elements.forEach(function(element) {
+                element.style.maxHeight = 'none';
+            });
         } else {
             isZoomed = false;
             overlayImg.style.cursor = "default";
