@@ -6,6 +6,20 @@
     <title>Folder Viewer</title>
     <style>
         /* Stile generale dei bottoni */
+        body::after {
+            content: "";
+            background-image: url("bkg.jpeg");
+            opacity: 0.3;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;   
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
         button.folder {
             background-color: #f0f0f0;
             border: 2px solid #cccccc;
