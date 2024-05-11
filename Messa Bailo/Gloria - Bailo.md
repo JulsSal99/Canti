@@ -25,8 +25,8 @@ Noi ti lodiamo, ti benediciamo, ti adoriamo,\
 ti glorifichiamo, ti rendiamo grazie &emsp;per la tua gloria immensa,\
 **Si- &emsp;&ensp; Sol7+ La &emsp;Re4 Re &ensp;Sol (Re/Fa#) Mi- &emsp; &emsp;&emsp;&emsp; La Fa#/La#**\
 Signore Dio, &ensp;re del cielo, &emsp;&ensp;Di - o &emsp;&ensp; &emsp; Padre onnipoten-te.\
-**Si- &emsp;&emsp; Mi- &emsp; &emsp; Fa#- &emsp;(Si-)&ensp; Sol Mi-7 La**\
-Signore, Figlio unigenito,&ensp;Gesù Cri - - - -  sto.\
+**Si- &emsp;&emsp; Mi- &emsp; &emsp; Fa#- &emsp;&emsp; (Si-)&ensp;Sol Mi-7 La**\
+Signore, Figlio unigenito,&ensp;&emsp; Gesù Cri - - - -  sto.\
 
 **Ritornello x1**
 
@@ -37,11 +37,11 @@ tu che siedi alla destra del Padre, abbi pietà di noi.\
 
 **Ritornello x1**
 
-**&emsp;&ensp; Si- &emsp; Fa#- &ensp;Si- &emsp; &emsp; Sol &emsp;&emsp;La4  La**\
+**&emsp;&ensp; Si- &emsp; Fa#- &ensp;Si- &emsp; &emsp; Sol/Si&emsp;La4  La**\
 Perchè tu solo il Santo, tu solo il Signo-re,
 **Re &ensp;Sol7+ &ensp;La&ensp;Re&ensp;Sol &ensp;Si-/Sol# La&ensp;Fa#/La#** \
 tu solo l'Al - tissimo, Ge - sù &emsp;&ensp;&emsp; Cri-sto,
-**Si- &ensp;&ensp; Sol7+ La&ensp; Re4&ensp;Si-&emsp;Sol (Si-/Fa#) Mi- &emsp;  La4 La**\
+**Si- &ensp;&ensp; Sol7+ La&ensp; Re4&ensp;(Si-) Sol (Si-/Fa#) Mi- &emsp;  La4 La**\
 con lo spirito Santo &emsp; nella glo - ria &emsp; &emsp; di Dio Pa - dre.
 **Si- Fa#-/La Sol Re/Fa# Mi- Sol/La Re**\
 A - men. &emsp;&ensp; A - men. &emsp; A - - - - - - men.

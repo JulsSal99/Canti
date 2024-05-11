@@ -10,7 +10,7 @@ Tommaso Bailo, Renato Giorgi
 
 <img title="title" alt="Alt text" src="./Santo-Bailo-intro.jpg" width="80%"/>
 
-**Sol Si-/Re Do Re Sol(Fondamentale) La- Si- Do Re**
+**Sol Si-/Re Do Re Sol(Fondamentale) La- (Do) Re**
 
 **Sol  Si-/Re Do Re**
 Sa\--nto &emsp; Sa-nto
