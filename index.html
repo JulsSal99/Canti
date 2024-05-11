@@ -168,19 +168,17 @@
     const thumbnailsPath = "thumbnails/";
 
 
-    let imageGroups2;
+    let imageGroups;
     fetch('imageGroups.json')
         .then(response => response.json())
         .then(data => {
-            imageGroups2 = data;
-            console.log(imageGroups2);
-        })
+        imageGroups = data;
+        console.log(imageGroups);
+        createImageGroups();
+    })
         .catch(error => {
             console.error('Si è verificato un errore:', error);
         });
-    
-    const imageGroups = imageGroups2
-    console.log(imageGroups);
 
 
     function createImageGroups() {
@@ -328,7 +326,6 @@
             navigateImages(1); // Naviga all'immagine successiva
         }
     }
-    createImageGroups();
 </script>
 </body>
 </html>
