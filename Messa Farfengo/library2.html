@@ -198,28 +198,24 @@
 
         if (!isZoomed) {
             isZoomed = true;
-            overlayImg.style.cursor = "move";
+            overlayImg.style.cursor = "default"; // Rimuove il cursore "move"
             zoomButton.textContent = "Normale";
-            overlayImg.addEventListener("mousedown", startDragging);
-            overlayImg.addEventListener("mouseup", stopDragging);
             overlayImg.style.width = "100%";
             overlayImg.style.height = "auto";
             overlayImg.style.top = "10%";
             overlayImg.style.maxHeight = ""; // Disattiva il max-height
+            overlayImg.style.overflowY = "scroll"; // Rendi l'immagine scrollabile verticalmente
         } else {
             isZoomed = false;
             overlayImg.style.cursor = "default";
             zoomButton.textContent = "Lente";
-            overlayImg.removeEventListener("mousedown", startDragging);
-            overlayImg.removeEventListener("mouseup", stopDragging);
             overlayImg.style.width = "";
             overlayImg.style.height = "";
             resetImagePosition();
             overlayImg.style.maxHeight = "90%"; // Riattiva il max-height
+            overlayImg.style.overflowY = ""; // Disabilita lo scrolling verticale
         }
     }
-
-
 
     function startDragging(event) {
         imageDragging = true;
