@@ -49,6 +49,7 @@
         display: block;
         margin: auto;
         max-width: 90%;
+        max-height: 90%;
         overflow-y: auto; /* Abilita lo scrolling verticale se l'immagine è più alta dell'area designata */
         position: absolute;
         top: 50%;
@@ -123,21 +124,6 @@
         overflow-y: auto;
     }
 
-    .image-container {
-        max-width: 90%;
-        max-height: 90%;
-        overflow-y: auto;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .image-container img {
-        display: block;
-        width: 100%; /* Aggiungiamo questa riga per garantire che l'immagine sia larga quanto il suo contenitore */
-        height: auto; /* Manteniamo l'altezza automatica per mantenere le proporzioni */
-    }
 
 
     /* Media query per dispositivi mobili */
@@ -201,9 +187,7 @@
         <div class="zoom-button" onclick="toggleZoom()">
             Lente
         </div>
-        <div id="imageContainer" class="image-container">
-            <img id="overlayImg">
-        </div>
+        <img id="overlayImg">
     </div>
     
 <script>
@@ -238,7 +222,6 @@
             document.body.style.overflow = ""; // Ripristina lo scrolling del body
         }
     }
-
 
     function startDragging(event) {
         imageDragging = true;
