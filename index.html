@@ -164,21 +164,13 @@
         </div>
         <img id="overlayImg">
     </div>
+<script src="imageGroups.json" id="imageGroupsData" type="application/json"></script>
 <script>
     const thumbnailsPath = "thumbnails/";
 
-
-    let imageGroups;
-    fetch('imageGroups.json')
-        .then(response => response.json())
-        .then(data => {
-            imageGroups = data;
-            console.log(imageGroups);
-        })
-        .catch(error => {
-            console.error('Si è verificato un errore:', error);
-        });
-
+    const imageGroupsScript = document.getElementById('imageGroupsData');
+    const imageGroups = JSON.parse(imageGroupsScript.textContent);
+    console.log(imageGroups);
 
     function createImageGroups() {
         const container = document.getElementById("imageContainer");
