@@ -133,6 +133,13 @@
         transform: translate(-50%, -50%);
     }
 
+    .image-container img {
+        display: block;
+        width: 100%; /* Aggiungiamo questa riga per garantire che l'immagine sia larga quanto il suo contenitore */
+        height: auto; /* Manteniamo l'altezza automatica per mantenere le proporzioni */
+    }
+
+
     /* Media query per dispositivi mobili */
     @media screen and (max-width: 768px) {
         /* Rimuove l'effetto di evidenziazione blu sui dispositivi mobili */
