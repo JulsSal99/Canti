@@ -23,16 +23,12 @@ I Cieli e la terra Sono pieni di &ensp; te
 della tua &emsp;glo - ria
 
 #### Ritornello: 
-**Do Sol**
-Osanna 
-**Si &nbsp; Mi-**
-Osanna
+**Do &nbsp; Sol &emsp;Si &nbsp; Mi-**
+Osanna &nbsp; Osanna
 **&emsp;&emsp;La- &emsp;La-/Do   Sol/Re Re**
 Osanna nell'alto dei cie - - -  li
-**Do Sol**
-Osanna 
-**Si &nbsp; Mi-**
-Osanna
+**Do &nbsp; Sol &emsp;Si &nbsp; Mi-**
+Osanna &nbsp; Osanna
 **&emsp;&emsp;La- &emsp;La-/Do&ensp;Re&ensp;Do**
 Osanna nell'alto dei cie\--li
 
